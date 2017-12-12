@@ -8,10 +8,17 @@
         android:id="@+id/item_sub_category_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left" />
+        android:textColor="@color/color_text_red"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="left"
+        android:padding="10dp"/>
 
-    <GridView
+    <samsung.zss.com.dianshangdemo.custem.MyGridView
         android:id="@+id/item_sub_category_third_gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="match_parent"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:numColumns="3"></samsung.zss.com.dianshangdemo.custem.MyGridView>
 </LinearLayout>

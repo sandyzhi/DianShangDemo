@@ -15,6 +15,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.common.utils.L;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,14 +48,16 @@ public class MyPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
-        initData("推荐分类");
+        initData("推荐分类",10);
         initView(view);
         return view;
     }
 
     //初始化数据
-    private void initData(String subtitle) {
-        for (int i = 0; i < 10; i++) {
+    private void initData(String subtitle,int length) {
+        L.d("ZSSLOG"," initdatea title "+subtitle);
+        datas = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
             List<SubCategoryBean.ThirdCategoryBean> beans = new ArrayList<>();
             SubCategoryBean subCategory = new SubCategoryBean();
             subCategory.setTitle(subtitle+i);
@@ -64,6 +68,9 @@ public class MyPageFragment extends Fragment {
                 beans.add(thirdBean);
             }
             subCategory.setThirdsBeans(beans);
+
+            datas.add(subCategory);
+            L.d("ZSSLOG"," putdate title "+datas.get(i).getTitle());
         }
     }
 
@@ -79,8 +86,16 @@ public class MyPageFragment extends Fragment {
 //                listView.getChildAt(position).setSelected(true);
                 mAdapter.setSelectedPosition(position);
                 mAdapter.notifyDataSetChanged();
-                initData(categotys[position]);
-                subAdapter.notifyDataSetChanged();
+                initData(categotys[position],position+5);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //do the ui-job
+                        subAdapter.notifyDataSetChanged();
+                    }
+                });
+
+                L.d("ZSSLOG"," datasize "+datas.size());
             }
         });
 
