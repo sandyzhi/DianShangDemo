@@ -86,14 +86,12 @@ public class MyPageFragment extends Fragment {
 //                listView.getChildAt(position).setSelected(true);
                 mAdapter.setSelectedPosition(position);
                 mAdapter.notifyDataSetChanged();
-                initData(categotys[position],position+5);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                initData(categotys[position],position);
+
                         //do the ui-job
+                        subAdapter.updateData(datas);
                         subAdapter.notifyDataSetChanged();
-                    }
-                });
+
 
                 L.d("ZSSLOG"," datasize "+datas.size());
             }
@@ -145,7 +143,7 @@ public class MyPageFragment extends Fragment {
                 convertView.setBackgroundColor(Color.WHITE);
             }else{
                 convertView.setSelected(false);
-                convertView.setBackgroundColor(Color.GRAY);
+                convertView.setBackgroundColor(Color.TRANSPARENT);
             }
             holder.textview.setText(categotys[position]);
             return convertView;
