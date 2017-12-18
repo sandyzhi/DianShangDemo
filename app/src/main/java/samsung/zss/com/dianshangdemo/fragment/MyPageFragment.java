@@ -56,8 +56,11 @@ public class MyPageFragment extends Fragment {
     //初始化数据
     private void initData(String subtitle,int length) {
         L.d("ZSSLOG"," initdatea title "+subtitle);
+//        if (datas!=null){
+//            datas.clear();
+//        }
         datas = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++) {
             List<SubCategoryBean.ThirdCategoryBean> beans = new ArrayList<>();
             SubCategoryBean subCategory = new SubCategoryBean();
             subCategory.setTitle(subtitle+i);
@@ -86,7 +89,7 @@ public class MyPageFragment extends Fragment {
 //                listView.getChildAt(position).setSelected(true);
                 mAdapter.setSelectedPosition(position);
                 mAdapter.notifyDataSetChanged();
-                initData(categotys[position],position);
+                initData(categotys[position],position+3);
 
                         //do the ui-job
                         subAdapter.updateData(datas);
@@ -98,7 +101,15 @@ public class MyPageFragment extends Fragment {
         });
 
         //recycle View
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()){
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+        };
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);//new LinearLayoutManager(getActivity())
         subAdapter = new SubCategoryAdapter(getActivity(),datas);
         recyclerView.setAdapter(subAdapter);
     }

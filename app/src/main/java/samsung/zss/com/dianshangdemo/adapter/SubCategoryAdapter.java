@@ -226,7 +226,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ViewHolder vh;
             if (convertView == null){
                 vh = new ViewHolder();
-                convertView = inflater.inflate(R.layout.item_sub_category_third_gridview,null);
+                convertView = inflater.inflate(R.layout.item_sub_category_third_gridview,parent,false);
                 vh.thirdImg = ((ImageView) convertView.findViewById(R.id.item_third_imgview));
                 vh.thirdTitle = ((TextView) convertView.findViewById(R.id.item_third_textview));
                 convertView.setTag(vh);
