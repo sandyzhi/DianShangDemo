@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         processLogic();
         setBottomListener();
+        L.i("-------------ceshi hahah ");
     }
 
     //处理数据
