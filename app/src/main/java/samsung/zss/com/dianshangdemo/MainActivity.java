@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.common.utils.L;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 //        transaction.commit();
+//        L.i("commit test ");
+//        L.i("commit test checkout -b 在本地基础上创建一个新的分支 并切换到新的分支  ");
         transaction.commitAllowingStateLoss();
 
     }
