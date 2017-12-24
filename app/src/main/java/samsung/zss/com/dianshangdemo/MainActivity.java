@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setBottomListener() {
-        Log.i("ZSSLOG", " bottom_container_layout " + bottom_container_layout);
+//        Log.i("ZSSLOG", " bottom_container_layout " + bottom_container_layout);
         for (int i = 0; i < bottom_container_layout.getChildCount(); i++) {
             if (i == 0) {
                 bottom_container_layout.getChildAt(i).setSelected(true);

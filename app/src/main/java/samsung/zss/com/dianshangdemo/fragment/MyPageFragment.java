@@ -38,6 +38,8 @@ public class MyPageFragment extends Fragment {
     private MyAdapter mAdapter;
     private List<SubCategoryBean> datas;
     private SubCategoryAdapter subAdapter;
+
+
     public MyPageFragment() {
         // Required empty public constructor
     }
@@ -55,7 +57,7 @@ public class MyPageFragment extends Fragment {
 
     //初始化数据
     private void initData(String subtitle,int length) {
-        L.d("ZSSLOG"," initdatea title "+subtitle);
+//        L.d("ZSSLOG"," initdatea title "+subtitle);
 //        if (datas!=null){
 //            datas.clear();
 //        }
@@ -73,7 +75,7 @@ public class MyPageFragment extends Fragment {
             subCategory.setThirdsBeans(beans);
 
             datas.add(subCategory);
-            L.d("ZSSLOG"," putdate title "+datas.get(i).getTitle());
+//            L.d("ZSSLOG"," putdate title "+datas.get(i).getTitle());
         }
     }
 
@@ -87,6 +89,21 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                listView.getChildAt(position).setSelected(true);
+                //滑动的相关逻辑
+                int childCount = listView.getChildCount();
+                int middlle_position = childCount/2;
+                if (position<=middlle_position){
+                    //下滑
+                    int scrollto = position  +1 -middlle_position;
+                    listView.smoothScrollToPosition(scrollto);
+                    L.i("ZSSLOG","childcount 下"+childCount+"    scrollto "+scrollto);
+                }else{
+                    //上滑
+                    int scrollto = position -1 + middlle_position;
+                    listView.smoothScrollToPosition(scrollto);
+                    L.i("ZSSLOG","childcount 上 "+childCount+"    scrollto "+scrollto);
+                }
+                L.i("ZSSLOG","childcount  "+childCount+"    position "+position);
                 mAdapter.setSelectedPosition(position);
                 mAdapter.notifyDataSetChanged();
                 initData(categotys[position],position+3);
@@ -96,7 +113,7 @@ public class MyPageFragment extends Fragment {
                         subAdapter.notifyDataSetChanged();
 
 
-                L.d("ZSSLOG"," datasize "+datas.size());
+//                L.d("ZSSLOG"," datasize "+datas.size());
             }
         });
 

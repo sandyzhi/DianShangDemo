@@ -43,14 +43,14 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.context = context;
         this.subCategorys = subCategorys;
         mInflater = LayoutInflater.from(context);
-        L.d("ZSSLOG"," SubCategoryAdapter size "+subCategorys.size());
+//        L.d("ZSSLOG"," SubCategoryAdapter size "+subCategorys.size());
     }
     public void updateData(List<SubCategoryBean> subCategory){
         subCategorys = subCategory;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        L.d("ZSSLOG"," onCreateViewHolder");
+//        L.d("ZSSLOG"," onCreateViewHolder");
         if (viewType == TYPE_BANNER) {
             return new SubCategoryBannerViewHolder(mInflater.inflate(R.layout.item_sub_category_banner, null));
         } else if (viewType == TYPE_OTHERS) {
@@ -92,7 +92,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         } else if (holder instanceof SubCategoryViewHolder) {
             ((SubCategoryViewHolder) holder).subTitleTv.setText(subCategorys.get(position).getTitle());
-            L.d("ZSSLOG","title  "+subCategorys.get(position).getTitle());
+//            L.d("ZSSLOG","title  "+subCategorys.get(position).getTitle());
             ((SubCategoryViewHolder) holder).subGrideView.setAdapter(new GridViewAdapter(context,subCategorys.get(position).getThirdsBeans()));
         }
     }
